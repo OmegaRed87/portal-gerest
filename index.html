@@ -487,7 +487,8 @@ class Component extends DCLogic {
       { id: 'topografia', nome: 'Levantamento topográfico planialtimétrico', dica: 'Com curvas de nível a cada 1,0 m. DWG.', opcionalNoPredial: true, padrao: 'Levantamento Topográfico', ext: ['dwg'] },
       { id: 'ensaios', nome: 'Relatório de sondagens e ensaios', dica: 'Ensaios geotécnicos: ISC/CBR, granulometria e limites de consistência. PDF.', opcionalNoPredial: true, padrao: 'Relatório de Ensaios' },
       { id: 'dimensionamento', nome: 'Memórias e planilhas de dimensionamento', dica: 'Memórias de cálculo e planilhas, inclusive planilhas de notas de serviço. PDF ou Excel. Aceita vários arquivos.', padrao: 'Memória de Cálculo', ext: ['pdf', 'xlsx', 'xls'], varios: true },
-      { id: 'art', nome: 'ART ou RRT', dica: 'Anotação ou Registro de Responsabilidade Técnica de elaboração de cada projeto. PDF. Aceita vários arquivos.', padrao: 'ART', varios: true },
+      // uma ART pode cobrir vários projetos: um campo por projeto, e o envio exige ao menos uma
+      ...disciplinas.map((p) => ({ id: 'art-' + p.id, nome: 'ART ou RRT: ' + p.nome, dica: 'Anotação ou Registro de Responsabilidade Técnica de elaboração do projeto. PDF. Se a mesma ART cobre vários projetos, anexe-a em um só campo.', padrao: 'ART de ' + p.curto, opcional: true, rotuloFixo: 'Ao menos uma ART' })),
       { id: 'outros', nome: 'Outros documentos', dica: 'Documentos complementares. Se a aprovação original está em processo físico, anexe aqui a justificativa das alterações. Aceita vários arquivos.', opcional: true, padrao: 'Documento Complementar', ext: ['pdf', 'dwg', 'docx', 'xlsx', 'xls'], varios: true },
     ].filter((d) => !(predial && d.soLoteamento));
 
@@ -506,8 +507,8 @@ class Component extends DCLogic {
         mudarTipo: (e) => this.setState({ licenca: e.target.value }),
         validade: s.validades[d.id] ?? '',
         mudarValidade: (e) => this.setState({ validades: { ...s.validades, [d.id]: e.target.value } }),
-        rotulo: obrigatorio ? 'Obrigatório' : 'Opcional',
-        corRotulo: obrigatorio ? '#B4480B' : '#53666A',
+        rotulo: d.rotuloFixo ?? (obrigatorio ? 'Obrigatório' : 'Opcional'),
+        corRotulo: obrigatorio || d.rotuloFixo ? '#B4480B' : '#53666A',
         varios: !!d.varios,
         aceita: ext.map((x) => '.' + x).join(','),
         erro: s.erros[d.id] ?? '',
@@ -542,6 +543,7 @@ class Component extends DCLogic {
     if (vazios) faltantes.push({ nome: 'Requerimento: ' + (vazios === 1 ? '1 campo obrigatório por preencher' : vazios + ' campos obrigatórios por preencher') });
     if (!s.declarou) faltantes.push({ nome: 'Requerimento: confirmar a declaração' });
     todos.filter((d) => d.obrigatorio && !d.anexado).forEach((d) => faltantes.push({ nome: d.nome }));
+    if (disciplinas.length && !todos.some((d) => d.id.startsWith('art-') && d.anexado)) faltantes.push({ nome: 'ART ou RRT (ao menos uma)' });
     const bloqueado = faltantes.length > 0;
     const enviando = !!s.envio?.andamento;
     const pedido = {
