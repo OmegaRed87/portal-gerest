@@ -22,7 +22,7 @@ addEventListener('load', () => {
   ok('anexar mostra o nome padronizado', corpo().includes('Será salvo como: Licença Ambiental Prévia - Novos Ares Luar.pdf'));
   anexa(1, 'foto.jpg');
   ok('formato errado é recusado', corpo().includes('Arquivo recusado'));
-  ok('sem serviço, a faixa de rascunho aparece', corpo().includes('Rascunho para conferência'));
+  ok('faixa de rascunho só aparece sem serviço', corpo().includes('Rascunho para conferência') === (window.PORTAL_API == null));
   marca('Ligação predial');
   ok('numeração na ligação predial', corpo().includes('4. Projetos técnicos') && corpo().includes('5. Envio'));
   ok('envio bloqueado com pendências', corpo().includes('Pendências para o envio'));

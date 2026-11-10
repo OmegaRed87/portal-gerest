@@ -1,8 +1,9 @@
 # Portal do empreendedor (GEREST) — rascunho
 
 Página de demonstração do formulário de abertura de processo para análise e aprovação de projetos de
-infraestrutura (SEINFRA/GEREST, Prefeitura de Goiânia). **Aqui é demonstração:** enquanto a página
-não conhece o endereço do serviço de recebimento, nada do que é preenchido ou anexado sai do navegador.
+infraestrutura (SEINFRA/GEREST, Prefeitura de Goiânia). A página envia o requerimento e os arquivos
+ao serviço de recebimento da GEREST, cujo endereço entra na geração do `index.html`. Gerada sem esse endereço, ela é só
+demonstração: mostra a faixa de rascunho e nada sai do navegador.
 
 - `index.html` — a página (gerada; não editar à mão)
 - `motor.js` — motor mínimo que desenha a página
