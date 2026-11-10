@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Envio de projetos de infraestrutura para análise</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Carlito:wght@400;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1B5E20}a:hover{color:#124116}
+input,button,select{font-family:inherit}
+</style>
+</helmet>
+<div style="background: #F2F4F4; color: #2A454A; font-family: Poppins, system-ui, sans-serif; font-size: 16px; line-height: 1.55">
+
+<div style="background: #FFF1C9; color: #4D3A00; font-size: 14px; font-weight: 600; padding: 10px 16px; text-align: center">Rascunho para conferência. Protótipo sem envio real.</div>
+
+<header style="background: #FFFFFF">
+<div style="max-width: 920px; margin: 0 auto; padding: 16px; display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center">
+<img src="/_blob/82d14b607f5ee570f48f53c02136729f" alt="Prefeitura de Goiânia" style="height: 76px; width: auto; display: block">
+<div style="flex: 1 1 260px; min-width: 0; border-left: 3px solid #1F7A3A; padding-left: 16px; font-family: Calibri, Carlito, sans-serif; font-size: 18px; line-height: 1.3; color: #2A454A">
+<div style="font-weight: 700">Secretaria Municipal de Infraestrutura Urbana</div>
+<div>Diretoria de Políticas e Programação de Obras de Infraestrutura Urbana</div>
+<div>Gerência de Estudos e Projetos</div>
+</div>
+</div>
+</header>
+<div style="height: 4px; background: #F36E22"></div>
+
+<div style="background: #1B5E20; color: #FFFFFF">
+<div style="max-width: 920px; margin: 0 auto; padding: 32px 16px">
+<h1 style="margin: 0; font-size: 24px; line-height: 1.35; font-weight: 600">Abertura de processo para análise e aprovação dos projetos de infraestrutura de empreendimentos, com emissão do Termo de Aprovação de Projetos.</h1>
+<p style="margin: 12px 0 0; font-size: 16px; color: #DDEBDD">Preencha os dados, anexe a documentação e receba por e-mail o número do processo SEI.</p>
+</div>
+</div>
+
+<sc-if value="{{ formulario }}" hint-placeholder-val="{{ true }}">
+<main style="max-width: 920px; margin: 0 auto; padding: 32px 16px 56px; display: flex; flex-direction: column; gap: 40px">
+
+<section style="background: #FFFFFF; border: 1px solid #E1E7E7; border-radius: 10px; padding: 20px 24px">
+<h2 style="margin: 0 0 8px; font-size: 18px; font-weight: 700">Como funciona</h2>
+<ol style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 4px">
+<li>Preencha os dados do requerente, do representante e do empreendimento.</li>
+<li>Anexe cada documento no campo correspondente. O envio só é aceito com toda a documentação obrigatória.</li>
+<li>Após o envio, o processo é aberto no SEI (Sistema Eletrônico de Informações) e o número é enviado ao e-mail informado, em alguns minutos. Na reaprovação, os documentos são juntados ao processo original.</li>
+</ol>
+</section>
+
+<section id="normas" style="background: #FFFFFF; border: 1px solid #E1E7E7; border-radius: 10px; padding: 20px 24px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 18px; font-weight: 700">Normas usadas na análise</h2>
+<p style="margin: 0; font-size: 15px; color: #53666A">A análise técnica segue as normas abaixo. Consulte-as na elaboração dos projetos.</p>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+<li style="display: flex; flex-wrap: wrap; gap: 4px 24px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #E1E7E7">
+<div style="flex: 1 1 320px; min-width: 0"><div style="font-weight: 600">Portaria SEINFRA nº 085/2022, de 19 de maio de 2022</div><div style="font-size: 14px; color: #53666A">Autorização e tramitação dos processos de aprovação de estudos, relatórios e projetos de infraestrutura.</div></div>
+<a href="#normas" style="flex: 0 0 auto; display: inline-flex; gap: 8px; align-items: center; min-height: 44px; font-weight: 600"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.5v9M5.2 8 9 11.8 12.8 8M3 15.5h12"></path></svg>Baixar PDF</a>
+</li>
+<li style="display: flex; flex-wrap: wrap; gap: 4px 24px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #E1E7E7">
+<div style="flex: 1 1 320px; min-width: 0"><div style="font-weight: 600">Lei Municipal nº 9.511, de 15 de dezembro de 2014</div><div style="font-size: 14px; color: #53666A">Controle de Águas Pluviais e Drenagem Urbana.</div></div>
+<a href="#normas" style="flex: 0 0 auto; display: inline-flex; gap: 8px; align-items: center; min-height: 44px; font-weight: 600"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.5v9M5.2 8 9 11.8 12.8 8M3 15.5h12"></path></svg>Baixar PDF</a>
+</li>
+<li style="display: flex; flex-wrap: wrap; gap: 4px 24px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #E1E7E7">
+<div style="flex: 1 1 320px; min-width: 0"><div style="font-weight: 600">Diretrizes Básicas de Elaboração de Projetos de Microdrenagem Superficial Urbana</div><div style="font-size: 14px; color: #53666A">AMOB, 2010.</div></div>
+<a href="#normas" style="flex: 0 0 auto; display: inline-flex; gap: 8px; align-items: center; min-height: 44px; font-weight: 600"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.5v9M5.2 8 9 11.8 12.8 8M3 15.5h12"></path></svg>Baixar PDF</a>
+</li>
+<li style="display: flex; flex-wrap: wrap; gap: 4px 24px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #E1E7E7">
+<div style="flex: 1 1 320px; min-width: 0"><div style="font-weight: 600">Diretrizes Básicas de Elaboração de Projetos de Pavimentação Urbana</div><div style="font-size: 14px; color: #53666A">AMOB, 2010.</div></div>
+<a href="#normas" style="flex: 0 0 auto; display: inline-flex; gap: 8px; align-items: center; min-height: 44px; font-weight: 600"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.5v9M5.2 8 9 11.8 12.8 8M3 15.5h12"></path></svg>Baixar PDF</a>
+</li>
+<li style="display: flex; flex-wrap: wrap; gap: 4px 24px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #E1E7E7">
+<div style="flex: 1 1 320px; min-width: 0"><div style="font-weight: 600">Portaria SEINFRA nº 043/2021, de 19 de março de 2021</div><div style="font-size: 14px; color: #53666A">Diretrizes básicas para cálculos hidráulicos de vazão de microbacia, para dimensionar obras de arte corrente e especial.</div></div>
+<a href="#normas" style="flex: 0 0 auto; display: inline-flex; gap: 8px; align-items: center; min-height: 44px; font-weight: 600"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.5v9M5.2 8 9 11.8 12.8 8M3 15.5h12"></path></svg>Baixar PDF</a>
+</li>
+</ul>
+<p style="margin: 0; padding-top: 12px; border-top: 1px solid #E1E7E7; font-size: 14px; color: #53666A">Aplicam-se também as demais normas pertinentes, como as da ABNT, da GOINFRA e do DNIT, quando cabíveis.</p>
+<h3 style="margin: 12px 0 0; font-size: 16px; font-weight: 700">Carimbo para os projetos</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 24px; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid #E1E7E7">
+<div style="flex: 1 1 320px; min-width: 0"><div style="font-weight: 600">Carimbo de aprovação da GEREST (brochura)</div><div style="font-size: 14px; color: #53666A">Carimbo padronizado pela GEREST. Insira-o nos documentos dos projetos: é nele que o gerente e o diretor assinam digitalmente a aprovação.</div></div>
+<a href="#normas" style="flex: 0 0 auto; display: inline-flex; gap: 8px; align-items: center; min-height: 44px; font-weight: 600"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.5v9M5.2 8 9 11.8 12.8 8M3 15.5h12"></path></svg>Baixar carimbo</a>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 20px">
+<h2 style="margin: 0; font-size: 24px; font-weight: 700; color: #1B5E20">1. Requerimento</h2>
+
+<div role="note" style="background: #FFF1EC; border: 1px solid #F36E22; border-radius: 10px; padding: 16px 20px">
+<p style="margin: 0; font-weight: 700; color: #1B5E20">Responsabilidade pelas informações prestadas</p>
+<p style="margin: 6px 0 0; font-size: 15px">Os dados e os documentos enviados por este formulário passam a integrar um processo administrativo da Prefeitura de Goiânia. Ao enviar, o requerente e o seu representante declaram que:</p>
+<ul style="margin: 8px 0 0; padding-left: 22px; font-size: 15px; display: flex; flex-direction: column; gap: 2px">
+<li>os dados informados são verdadeiros, completos e atuais;</li>
+<li>os documentos anexados são autênticos e conferem com os originais;</li>
+<li>nenhuma informação relevante para a análise foi omitida.</li>
+</ul>
+<p style="margin: 8px 0 0; font-size: 15px">A responsabilidade pelo que é informado é exclusiva de quem envia. Omitir informação ou apresentar declaração ou documento falso pode configurar os crimes de falsidade ideológica e de uso de documento falso (Código Penal, arts. 299 e 304), sem prejuízo das sanções administrativas e civis. Os processos e os prejuízos decorrentes serão suportados integralmente pelo responsável.</p>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E1E7E7; border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 28px">
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">Requerente</h3>
+<fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 28px">
+<legend style="padding: 0; margin-bottom: 6px; font-weight: 600; font-size: 15px">Natureza do requerente</legend>
+<label style="display: flex; gap: 10px; align-items: center; min-height: 44px; cursor: pointer"><input type="radio" name="natureza" checked="{{ ehJuridica }}" onChange="{{ escolherJuridica }}" style="width: 20px; height: 20px; margin: 0; accent-color: {{ accent }}">Pessoa jurídica</label>
+<label style="display: flex; gap: 10px; align-items: center; min-height: 44px; cursor: pointer"><input type="radio" name="natureza" checked="{{ ehFisica }}" onChange="{{ escolherFisica }}" style="width: 20px; height: 20px; margin: 0; accent-color: {{ accent }}">Pessoa física</label>
+</fieldset>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="nome" style="font-weight: 600; font-size: 15px">Nome ou razão social</label>
+<input id="nome" type="text" value="{{ f.nome }}" onChange="{{ mudarNome }}" style="min-height: 44px; padding: 8px 12px; font-size: 16px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A; box-sizing: border-box; width: 100%">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="doc" style="font-weight: 600; font-size: 15px">{{ rotuloDoc }}</label>
+<input id="doc" type="text" inputmode="numeric" value="{{ f.doc }}" onChange="{{ mudarDoc }}" style="min-height: 44px; padding: 8px 12px; font-size: 16px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A; box-sizing: border-box; width: 100%">
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="endereco" style="font-weight: 600; font-size: 15px">Endereço do requerente</label>
+<input id="endereco" type="text" value="{{ f.endereco }}" onChange="{{ mudarEndereco }}" style="min-height: 44px; padding: 8px 12px; font-size: 16px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A; box-sizing: border-box; width: 100%">
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">Representante</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="representante" style="font-weight: 600; font-size: 15px">Nome do representante</label>
+<input id="representante" type="text" value="{{ f.representante }}" onChange="{{ mudarRepresentante }}" style="min-height: 44px; padding: 8px 12px; font-size: 16px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A; box-sizing: border-box; width: 100%">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="docRep" style="font-weight: 600; font-size: 15px">CPF do representante</label>
+<input id="docRep" type="text" inputmode="numeric" value="{{ f.docRep }}" onChange="{{ mudarDocRep }}" style="min-height: 44px; padding: 8px 12px; font-size: 16px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A; box-sizing: border-box; width: 100%">
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">Contato</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="email" style="font-weight: 600; font-size: 15px">E-mail</label>
+<input id="email" type="email" autocomplete="email" value="{{ f.email }}" onChange="{{ mudarEmail }}" style="min-height: 44px; padding: 8px 12px; font-size: 16px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A; box-sizing: border-box; width: 100%">
+<span style="font-size: 14px; color: #53666A">O número do processo e as comunicações da análise são enviados a este endereço.</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="telefone" style="font-weight: 600; font-size: 15px">Telefone (opcional)</label>
+<input id="telefone" type="tel" autocomplete="tel" style="min-height: 44px; padding: 8px 12px; font-size: 16px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A; box-sizing: border-box; width: 100%">
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">Pedido</h3>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="empreendimento" style="font-weight: 600; font-size: 15px">Nome do empreendimento ou do projeto</label>
+<input id="empreendimento" type="text" value="{{ f.empreendimento }}" onChange="{{ mudarEmpreendimento }}" style="min-height: 44px; padding: 8px 12px; font-size: 16px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A; box-sizing: border-box; width: 100%">
+<span style="font-size: 14px; color: #53666A">Este é o nome que constará no Termo de Aprovação. Escreva exatamente como deve aparecer.</span>
+</div>
+<fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 28px">
+<legend style="padding: 0; margin-bottom: 4px; font-weight: 600; font-size: 15px">Natureza do pedido</legend>
+<label style="display: flex; gap: 10px; align-items: center; min-height: 44px; cursor: pointer"><input type="radio" name="naturezaPedido" checked="{{ ehInicial }}" onChange="{{ escolherInicial }}" style="width: 20px; height: 20px; margin: 0; accent-color: {{ accent }}">Aprovação inicial</label>
+<label style="display: flex; gap: 10px; align-items: center; min-height: 44px; cursor: pointer"><input type="radio" name="naturezaPedido" checked="{{ ehReaprovacao }}" onChange="{{ escolherReaprovacao }}" style="width: 20px; height: 20px; margin: 0; accent-color: {{ accent }}">Reaprovação de projeto já aprovado</label>
+</fieldset>
+<sc-if value="{{ ehReaprovacao }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="processo" style="font-weight: 600; font-size: 15px">Número do processo SEI da aprovação original</label>
+<input id="processo" type="text" inputmode="numeric" value="{{ f.processo }}" onChange="{{ mudarProcesso }}" style="min-height: 44px; padding: 8px 12px; font-size: 16px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A; box-sizing: border-box; width: 100%; max-width: 320px">
+<span style="font-size: 14px; color: #53666A">A reaprovação tramita no mesmo processo. Envie toda a documentação da aprovação inicial e a justificativa da reaprovação.</span>
+</div>
+<div role="note" style="font-size: 15px; background: #F2F4F4; border-radius: 8px; padding: 14px 18px">
+<p style="margin: 0; font-weight: 700">A aprovação original está em processo físico?</p>
+<p style="margin: 6px 0 0">Processos anteriores ao SEI não podem ser continuados por aqui. Nesse caso, marque “Aprovação inicial” e anexe a justificativa das alterações em “Outros documentos”.</p>
+</div>
+</div>
+</sc-if>
+<fieldset style="border: 0; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+<legend style="padding: 0; margin-bottom: 8px; font-weight: 600; font-size: 15px">Tipo de pedido (define a documentação exigida)</legend>
+<label style="display: flex; gap: 12px; align-items: flex-start; min-height: 44px; padding: 16px; border-radius: 10px; background: #FFFFFF; cursor: pointer; border: 2px solid {{ bordaLoteamento }}">
+<input type="radio" name="tipo" checked="{{ ehLoteamento }}" onChange="{{ escolherLoteamento }}" style="width: 20px; height: 20px; margin: 2px 0 0; accent-color: {{ accent }}">
+<span><span style="display: block; font-weight: 600">Loteamento</span><span style="display: block; font-size: 14px; color: #53666A">Projetos de infraestrutura urbana de um novo loteamento.</span></span>
+</label>
+<label style="display: flex; gap: 12px; align-items: flex-start; min-height: 44px; padding: 16px; border-radius: 10px; background: #FFFFFF; cursor: pointer; border: 2px solid {{ bordaPredial }}">
+<input type="radio" name="tipo" checked="{{ ehPredial }}" onChange="{{ escolherPredial }}" style="width: 20px; height: 20px; margin: 2px 0 0; accent-color: {{ accent }}">
+<span><span style="display: block; font-weight: 600">Ligação predial</span><span style="display: block; font-size: 14px; color: #53666A">Ligação de um imóvel à rede pública existente.</span></span>
+</label>
+</fieldset>
+<sc-if value="{{ ehLoteamento }}" hint-placeholder-val="{{ true }}">
+<fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 28px">
+<legend style="padding: 0; margin-bottom: 4px; font-weight: 600; font-size: 15px">Modalidade do loteamento</legend>
+<label style="display: flex; gap: 10px; align-items: center; min-height: 44px; cursor: pointer"><input type="radio" name="modalidade" checked="{{ ehAberto }}" onChange="{{ escolherAberto }}" style="width: 20px; height: 20px; margin: 0; accent-color: {{ accent }}">Aberto</label>
+<label style="display: flex; gap: 10px; align-items: center; min-height: 44px; cursor: pointer"><input type="radio" name="modalidade" checked="{{ ehControlado }}" onChange="{{ escolherControlado }}" style="width: 20px; height: 20px; margin: 0; accent-color: {{ accent }}">De acesso controlado</label>
+</fieldset>
+</sc-if>
+<fieldset style="border: 0; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0 16px">
+<legend style="padding: 0; margin-bottom: 4px; font-weight: 600; font-size: 15px">Projetos submetidos à análise (marque todos os que integram o pedido)</legend>
+<sc-for list="{{ projetos }}" as="p" hint-placeholder-count="8">
+<label style="display: flex; gap: 10px; align-items: center; min-height: 44px; cursor: pointer"><input type="checkbox" checked="{{ p.marcado }}" onChange="{{ p.alternar }}" style="width: 20px; height: 20px; margin: 0; accent-color: {{ accent }}">{{ p.nome }}</label>
+</sc-for>
+<label style="display: flex; gap: 10px; align-items: center; min-height: 44px; cursor: pointer"><input type="checkbox" checked="{{ outroMarcado }}" onChange="{{ alternarOutro }}" style="width: 20px; height: 20px; margin: 0; accent-color: {{ accent }}">Outro projeto</label>
+</fieldset>
+<sc-if value="{{ outroMarcado }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="outro" style="font-weight: 600; font-size: 15px">Especifique o projeto</label>
+<input id="outro" type="text" value="{{ f.outro }}" onChange="{{ mudarOutro }}" style="min-height: 44px; padding: 8px 12px; font-size: 16px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A; box-sizing: border-box; width: 100%">
+<span style="font-size: 14px; color: #53666A">Para projeto que não se enquadra nas opções acima.</span>
+</div>
+</sc-if>
+<label style="display: flex; gap: 12px; align-items: flex-start; min-height: 44px; cursor: pointer">
+<input type="checkbox" checked="{{ servidao }}" onChange="{{ alternarServidao }}" style="width: 20px; height: 20px; margin: 2px 0 0; accent-color: {{ accent }}">
+<span><span style="display: block; font-weight: 600">A rede projetada atravessa área de terceiros</span><span style="display: block; font-size: 14px; color: #53666A">Exige o Termo de Servidão e o comprovante de propriedade da área atravessada.</span></span>
+</label>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 12px">
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">Declaração</h3>
+<div style="font-size: 15px; background: #F2F4F4; border-radius: 8px; padding: 16px 20px">
+<p style="margin: 0 0 8px">Como responsável técnico pela elaboração dos Projetos de Infraestrutura do Empreendimento, declaro:</p>
+<ol type="A" style="margin: 0; padding-left: 24px; display: flex; flex-direction: column; gap: 6px">
+<li>Que os projetos foram elaborados conforme as normas, as instruções e as diretrizes técnicas aplicáveis a cada tipo de projeto, bem como as demais normas vigentes;</li>
+<li>Que o projeto previu sistema de infraestrutura adequado, de modo a não gerar impactos na infraestrutura urbana existente nem a terceiros;</li>
+<li>Estar ciente de que declarações falsas implicarão:
+<ol type="a" style="margin: 6px 0 0; padding-left: 24px; display: flex; flex-direction: column; gap: 4px">
+<li>Indeferimento do pedido de aprovação dos projetos;</li>
+<li>Nulidade do Termo de Aprovação de Projetos eventualmente expedido com suporte na declaração;</li>
+<li>Remessa do processo de aprovação à fiscalização, para a aplicação das penalidades administrativas cabíveis;</li>
+<li>Responsabilidade profissional do declarante junto ao órgão de controle do exercício da profissão;</li>
+<li>Remessa de documentos à Procuradoria-Geral do Município, para a apuração da responsabilidade administrativa, civil e criminal.</li>
+</ol>
+</li>
+<li>Estar ciente do alcance da análise técnica da Secretaria:
+<ol type="a" style="margin: 6px 0 0; padding-left: 24px; display: flex; flex-direction: column; gap: 4px">
+<li>A análise confere os cálculos apresentados quanto aos aspectos metodológicos e à razoabilidade dos resultados. A responsabilidade integral pelos cálculos estruturais, hidráulicos e quantitativos permanece com os profissionais que os elaboraram;</li>
+<li>A análise não substitui nem valida as Anotações de Responsabilidade Técnica (ART) ou os Registros de Responsabilidade Técnica (RRT) e baseia-se exclusivamente na documentação submetida. A eficiência das soluções propostas, a veracidade das informações e o desempenho das obras são de inteira responsabilidade do empreendedor e dos responsáveis técnicos;</li>
+<li>A Secretaria pode solicitar documentação complementar, esclarecimentos adicionais ou reavaliação, conforme a necessidade identificada. A aprovação não exime o empreendedor de cumprir as demais exigências legais junto a outros órgãos competentes.</li>
+</ol>
+</li>
+</ol>
+<p style="margin: 10px 0 0">O declarante responde, civil e penalmente, pela veracidade das declarações ora prestadas, isentando a Prefeitura de Goiânia de quaisquer responsabilidades por elas e assumindo todas as obrigações, inclusive eventuais danos causados a terceiros.</p>
+</div>
+<label style="display: flex; gap: 12px; align-items: flex-start; min-height: 44px; padding: 14px 16px; border-radius: 10px; cursor: pointer; border: 2px solid {{ bordaDeclaracao }}">
+<input type="checkbox" checked="{{ declarou }}" onChange="{{ alternarDeclaracao }}" style="flex: 0 0 auto; width: 20px; height: 20px; margin: 2px 0 0; accent-color: {{ accent }}">
+<span style="font-weight: 600">Li a declaração acima e confirmo que as informações prestadas e os documentos anexados são verdadeiros, completos e de minha inteira responsabilidade.</span>
+</label>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 12px">
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">Prévia do requerimento</h3>
+<p style="margin: 0; font-size: 14px; color: #53666A">Este texto, seguido da declaração, é o primeiro documento do processo.</p>
+<div style="border: 1px solid #CCD3D5; border-radius: 8px; padding: 24px; font-family: Calibri, Carlito, sans-serif; font-size: 17px; line-height: 1.5; color: #1D2F33; display: flex; flex-direction: column; gap: 14px">
+<div style="text-align: center; font-weight: 700; letter-spacing: 0.04em">REQUERIMENTO</div>
+<div style="text-align: right">{{ previaData }}</div>
+<div style="text-align: justify">{{ previaTexto }}</div>
+<div>Seguem anexos os arquivos solicitados.</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px 32px; margin-top: 12px; font-size: 15px; text-align: center">
+<div style="border-top: 1px solid #1D2F33; padding-top: 6px">{{ assinaRepresentante }}</div>
+<div style="border-top: 1px solid #1D2F33; padding-top: 6px">{{ assinaRequerente }}</div>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 24px; font-weight: 700; color: #1B5E20">2. Documentos administrativos</h2>
+<p style="margin: 0 0 4px; font-size: 15px; color: #53666A">Documentos digitalizados com resolução mínima de 300 dpi. Cada arquivo é salvo no processo com nome padronizado: tipo do documento e nome do empreendimento.</p>
+<sc-for list="{{ administrativos }}" as="doc" hint-placeholder-count="3">
+<div style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding: 16px 20px; border-radius: 10px; border: 1px solid {{ doc.borda }}; background: {{ doc.fundo }}">
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline">
+<span style="font-weight: 600">{{ doc.nome }}</span>
+<span style="font-size: 13px; font-weight: 600; color: {{ doc.corRotulo }}">{{ doc.rotulo }}</span>
+</div>
+<span style="font-size: 14px; color: #53666A">{{ doc.dica }}</span>
+<sc-if value="{{ doc.temTipo }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; margin-top: 4px">
+<label style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; font-weight: 600">Tipo <select value="{{ doc.tipo }}" onChange="{{ doc.mudarTipo }}" style="min-height: 44px; padding: 6px 10px; font-size: 15px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A"><option value="previa">Licença Ambiental Prévia</option><option value="instalacao">Licença Ambiental de Instalação</option></select></label>
+</div>
+</sc-if>
+<sc-if value="{{ doc.temValidade }}" hint-placeholder-val="{{ false }}">
+<label style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; font-weight: 600; margin-top: 4px">Validade <input type="date" style="min-height: 44px; padding: 6px 10px; font-size: 15px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A"></label>
+</sc-if>
+<sc-if value="{{ doc.anexado }}" hint-placeholder-val="{{ false }}">
+<span style="display: flex; gap: 6px; align-items: flex-start; font-size: 14px; font-weight: 600; color: #17602C"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto; margin-top: 3px"><path d="M3 8.5l3.2 3.2L13 4.8"></path></svg><span>Anexado. Será salvo como: {{ doc.arquivo }}</span></span>
+</sc-if>
+</div>
+<button type="button" onClick="{{ doc.alternar }}" style="flex: 0 0 auto; min-height: 44px; padding: 8px 18px; font-size: 15px; font-weight: 600; border-radius: 10px; cursor: pointer; border: 1px solid {{ doc.bordaBotao }}; background: {{ doc.fundoBotao }}; color: {{ doc.corBotao }}">{{ doc.acao }}</button>
+</div>
+</sc-for>
+</section>
+
+<sc-if value="{{ ehPredial }}" hint-placeholder-val="{{ false }}">
+<section style="display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 24px; font-weight: 700; color: #1B5E20">3. Documentos da ligação predial</h2>
+<p style="margin: 0 0 4px; font-size: 15px; color: #53666A">A ligação predial exige também estes dois documentos.</p>
+<sc-for list="{{ prediais }}" as="doc" hint-placeholder-count="2">
+<div style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding: 16px 20px; border-radius: 10px; border: 1px solid {{ doc.borda }}; background: {{ doc.fundo }}">
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline">
+<span style="font-weight: 600">{{ doc.nome }}</span>
+<span style="font-size: 13px; font-weight: 600; color: {{ doc.corRotulo }}">{{ doc.rotulo }}</span>
+</div>
+<span style="font-size: 14px; color: #53666A">{{ doc.dica }}</span>
+<sc-if value="{{ doc.temValidade }}" hint-placeholder-val="{{ false }}">
+<label style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; font-weight: 600; margin-top: 4px">Validade <input type="date" style="min-height: 44px; padding: 6px 10px; font-size: 15px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A"></label>
+</sc-if>
+<sc-if value="{{ doc.anexado }}" hint-placeholder-val="{{ false }}">
+<span style="display: flex; gap: 6px; align-items: flex-start; font-size: 14px; font-weight: 600; color: #17602C"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto; margin-top: 3px"><path d="M3 8.5l3.2 3.2L13 4.8"></path></svg><span>Anexado. Será salvo como: {{ doc.arquivo }}</span></span>
+</sc-if>
+</div>
+<button type="button" onClick="{{ doc.alternar }}" style="flex: 0 0 auto; min-height: 44px; padding: 8px 18px; font-size: 15px; font-weight: 600; border-radius: 10px; cursor: pointer; border: 1px solid {{ doc.bordaBotao }}; background: {{ doc.fundoBotao }}; color: {{ doc.corBotao }}">{{ doc.acao }}</button>
+</div>
+</sc-for>
+</section>
+</sc-if>
+
+<section style="display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 24px; font-weight: 700; color: #1B5E20">{{ nTecnicos }}. Projetos técnicos</h2>
+<p style="margin: 0 0 4px; font-size: 15px; color: #53666A">Para cada projeto marcado no requerimento, anexe o memorial descritivo e o projeto técnico em DWG e em PDF. Planilha orçamentária não é exigida.</p>
+<sc-if value="{{ semProjetos }}" hint-placeholder-val="{{ true }}">
+<p style="margin: 0; padding: 14px 20px; border-radius: 10px; border: 1px dashed #CCD3D5; background: #F2F4F4; font-size: 15px">Marque no requerimento os projetos submetidos à análise: os campos do memorial descritivo e do projeto técnico de cada um aparecem aqui.</p>
+</sc-if>
+<sc-for list="{{ tecnicos }}" as="doc" hint-placeholder-count="8">
+<div style="display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding: 16px 20px; border-radius: 10px; border: 1px solid {{ doc.borda }}; background: {{ doc.fundo }}">
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline">
+<span style="font-weight: 600">{{ doc.nome }}</span>
+<span style="font-size: 13px; font-weight: 600; color: {{ doc.corRotulo }}">{{ doc.rotulo }}</span>
+</div>
+<span style="font-size: 14px; color: #53666A">{{ doc.dica }}</span>
+<sc-if value="{{ doc.anexado }}" hint-placeholder-val="{{ false }}">
+<span style="display: flex; gap: 6px; align-items: flex-start; font-size: 14px; font-weight: 600; color: #17602C"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto; margin-top: 3px"><path d="M3 8.5l3.2 3.2L13 4.8"></path></svg><span>Anexado. Será salvo como: {{ doc.arquivo }}</span></span>
+</sc-if>
+</div>
+<button type="button" onClick="{{ doc.alternar }}" style="flex: 0 0 auto; min-height: 44px; padding: 8px 18px; font-size: 15px; font-weight: 600; border-radius: 10px; cursor: pointer; border: 1px solid {{ doc.bordaBotao }}; background: {{ doc.fundoBotao }}; color: {{ doc.corBotao }}">{{ doc.acao }}</button>
+</div>
+</sc-for>
+</section>
+
+<section aria-live="polite" style="background: #FFFFFF; border: 1px solid #E1E7E7; border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-size: 24px; font-weight: 700; color: #1B5E20">{{ nEnviar }}. Envio</h2>
+<p style="margin: 0; font-weight: 600; color: {{ corResumo }}">{{ resumo }}</p>
+<sc-if value="{{ bloqueado }}" hint-placeholder-val="{{ true }}">
+<ul style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 2px; font-size: 15px">
+<sc-for list="{{ faltantes }}" as="falta" hint-placeholder-count="5">
+<li>{{ falta.nome }}</li>
+</sc-for>
+</ul>
+</sc-if>
+<div style="font-size: 15px; background: #F2F4F4; border-radius: 8px; padding: 14px 18px">
+<p style="margin: 0; font-weight: 700">Dados pessoais e acesso aos documentos</p>
+<p style="margin: 6px 0 0">Documentos com dados pessoais entram no SEI com acesso restrito, e o processo tramita normalmente. Os demais são públicos e podem ser consultados por qualquer pessoa.</p>
+</div>
+<p style="margin: 0; font-size: 14px; color: #53666A">Ao enviar, você confirma a declaração de responsabilidade do requerimento.</p>
+<div>
+<button type="button" disabled="{{ bloqueado }}" onClick="{{ enviar }}" style="min-height: 48px; padding: 10px 28px; font-size: 16px; font-weight: 700; border: 0; border-radius: 10px; cursor: {{ cursorEnviar }}; background: {{ fundoEnviar }}; color: {{ corEnviar }}">Enviar pedido</button>
+</div>
+</section>
+
+</main>
+</sc-if>
+
+<sc-if value="{{ enviado }}" hint-placeholder-val="{{ false }}">
+<main style="max-width: 920px; margin: 0 auto; padding: 40px 16px 56px">
+<section style="background: #FFFFFF; border: 1px solid #1F7A3A; border-radius: 10px; padding: 32px 24px; display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-size: 28px; font-weight: 700; color: #17602C">Pedido recebido</h2>
+<p style="margin: 0">Recebemos o requerimento e {{ totalAnexados }} documentos de <strong>{{ especificacao }}</strong>.</p>
+<sc-if value="{{ ehInicial }}" hint-placeholder-val="{{ true }}">
+<p style="margin: 0">O processo está em abertura no SEI. O número será enviado ao e-mail informado em alguns minutos, e o acompanhamento da análise é feito por ele.</p>
+</sc-if>
+<sc-if value="{{ ehReaprovacao }}" hint-placeholder-val="{{ false }}">
+<p style="margin: 0">O processo SEI nº {{ processoOriginal }} será conferido. Confirmado o número, os documentos são juntados a ele e a confirmação é enviada ao e-mail informado. Se houver divergência, um analista da GEREST faz a conferência e entra em contato.</p>
+</sc-if>
+<p style="margin: 0; font-size: 15px; color: #53666A">Protocolo deste envio: [Nº DO ENVIO] · [DATA E HORA]</p>
+<div>
+<button type="button" onClick="{{ recomecar }}" style="min-height: 44px; padding: 8px 18px; font-size: 15px; font-weight: 600; border-radius: 10px; cursor: pointer; border: 1px solid #1B5E20; background: #FFFFFF; color: #1B5E20">Fazer outro envio</button>
+</div>
+</section>
+</main>
+</sc-if>
+
+<footer style="background: #1B5E20; color: #FFFFFF">
+<div style="max-width: 920px; margin: 0 auto; padding: 28px 16px; display: flex; flex-wrap: wrap; gap: 12px 40px; justify-content: space-between; font-size: 14px">
+<div>
+<div style="font-weight: 700; font-size: 16px">Prefeitura de Goiânia</div>
+<div style="color: #DDEBDD">Secretaria Municipal de Infraestrutura Urbana · Gerência de Estudos e Projetos</div>
+</div>
+<div style="color: #DDEBDD">
+<div>Dúvidas: [CONTATO DA GEREST]</div>
+<div><a href="https://www.goiania.go.gov.br/" style="color: #FFFFFF">www.goiania.go.gov.br</a></div>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#1B5E20"},"$preview":{"width":1280,"height":6600}}'>
+class Component extends DCLogic {
+  state = {
+    tipo: 'loteamento', modalidade: '', reaprov: false, servidao: false, anexos: {}, enviado: false, declarou: false,
+    projetos: {}, outroMarcado: false, licenca: 'previa',
+    f: { natureza: 'juridica', nome: '', doc: '', endereco: '', representante: '', docRep: '', email: '', empreendimento: '', outro: '', processo: '' },
+  };
+
+  renderVals() {
+    const accent = this.props.accent ?? '#1B5E20';
+    const s = this.state;
+    const f = s.f;
+    const predial = s.tipo === 'predial';
+    const juridica = f.natureza === 'juridica';
+    const mudar = (campo) => (e) => this.setState({ f: { ...f, [campo]: e.target.value } });
+    const ou = (valor, rotulo) => (valor && valor.trim() ? valor.trim() : '[' + rotulo + ']');
+    const empreendimento = ou(f.empreendimento, 'nome do empreendimento');
+
+    const projetos = [
+      { id: 'terraplenagem', nome: 'Terraplenagem', curto: 'Terraplenagem' },
+      { id: 'pavimentacao', nome: 'Pavimentação Asfáltica', curto: 'Pavimentação' },
+      { id: 'galeria', nome: 'Galeria de Águas Pluviais (GAP)', curto: 'GAP' },
+      { id: 'amortecimento', nome: 'Sistema de Amortecimento de Águas Pluviais', curto: 'Amortecimento' },
+      { id: 'contencao', nome: 'Contenção', curto: 'Contenção' },
+      { id: 'gabiao', nome: 'Gabião', curto: 'Gabião' },
+      { id: 'oae', nome: 'Obra de Arte Especial (OAE)', curto: 'OAE' },
+      { id: 'oac', nome: 'Obra de Arte Corrente (OAC)', curto: 'OAC' },
+    ].map((p) => ({
+      ...p, marcado: !!s.projetos[p.id],
+      alternar: () => this.setState({ projetos: { ...s.projetos, [p.id]: !s.projetos[p.id] } }),
+    }));
+    const escolhidos = projetos.filter((p) => p.marcado).map((p) => p.nome);
+    if (s.outroMarcado) escolhidos.push(ou(f.outro, 'outro projeto'));
+    const listaProjetos = escolhidos.length === 0 ? '[projetos a analisar]'
+      : escolhidos.length === 1 ? escolhidos[0]
+      : escolhidos.slice(0, -1).join(', ') + ' e ' + escolhidos[escolhidos.length - 1];
+
+    const licencaPrevia = s.licenca === 'previa';
+    const administrativos = [
+      { id: 'licenca', nome: 'Licença ambiental', dica: 'Emitida pela Agência Municipal do Meio Ambiente (AMMA). PDF.', temValidade: true, temTipo: true,
+        padrao: licencaPrevia ? 'Licença Ambiental Prévia' : 'Licença Ambiental de Instalação' },
+      { id: 'identificacao', nome: 'Documento de identificação do proponente', dica: 'RG e CPF (pessoa física) ou comprovante de inscrição no CNPJ (pessoa jurídica). PDF.', padrao: 'Identificação do Proponente' },
+      { id: 'terreno', nome: 'Comprovante de propriedade ou posse do terreno', dica: 'PDF.', padrao: 'Comprovante de Propriedade' },
+      { id: 'procuracao', nome: 'Procuração', dica: 'Dos responsáveis pelo empreendimento ao solicitante. Necessária quando o requerimento é feito por representante, e não pelo próprio responsável ou sócio. PDF.', opcional: true, padrao: 'Procuração' },
+    ];
+    if (s.servidao) {
+      administrativos.push(
+        { id: 'termo', nome: 'Termo de Servidão', dica: 'Com firma reconhecida ou assinatura digital. PDF.', padrao: 'Termo de Servidão' },
+        { id: 'area', nome: 'Comprovante de propriedade da área de servidão', dica: 'PDF.', padrao: 'Comprovante da Área de Servidão' });
+    }
+    if (s.reaprov) {
+      administrativos.unshift({ id: 'justificativa', nome: 'Justificativa da reaprovação', dica: 'Alterações em relação ao projeto aprovado e o motivo de cada uma. PDF ou DOCX.', padrao: 'Justificativa da Reaprovação' });
+    }
+    const prediais = predial ? [
+      { id: 'alvara', nome: 'Alvará de construção ou de modificação', dica: 'PDF.', temValidade: true, padrao: 'Alvará de Construção' },
+      { id: 'urbanistico', nome: 'Projeto urbanístico aprovado', dica: 'PDF e DWG.', padrao: 'Projeto Urbanístico Aprovado' },
+    ] : [];
+    // cada projeto marcado no requerimento pede o seu memorial e o seu projeto, em DWG e em PDF
+    const disciplinas = projetos.filter((p) => p.marcado).map((p) => ({ id: p.id, nome: p.nome, curto: p.curto }));
+    if (s.outroMarcado) disciplinas.push({ id: 'outro', nome: ou(f.outro, 'outro projeto'), curto: ou(f.outro, 'outro projeto') });
+    const tecnicos = [
+      ...disciplinas.flatMap((p) => [
+        { id: 'memorial-' + p.id, nome: 'Memorial descritivo: ' + p.nome, dica: 'PDF.', padrao: 'Memorial Descritivo de ' + p.curto },
+        { id: 'dwg-' + p.id, nome: 'Projeto técnico em DWG: ' + p.nome, dica: 'Todas as pranchas, no arquivo editável. Aceita vários arquivos.', padrao: 'Projeto de ' + p.curto, ext: '.dwg' },
+        { id: 'pdf-' + p.id, nome: 'Projeto técnico em PDF: ' + p.nome, dica: 'Um único arquivo PDF com todas as pranchas.', padrao: 'Projeto de ' + p.curto },
+      ]),
+      { id: 'planta', nome: 'Planta urbanística aprovada', dica: 'Aprovada pelo órgão municipal de planejamento. PDF.', soLoteamento: true, padrao: 'Planta Urbanística Aprovada' },
+      { id: 'topografia', nome: 'Levantamento topográfico planialtimétrico', dica: 'Com curvas de nível a cada 1,0 m. DWG.', opcionalNoPredial: true, padrao: 'Levantamento Topográfico', ext: '.dwg' },
+      { id: 'ensaios', nome: 'Relatório de sondagens e ensaios', dica: 'Ensaios geotécnicos: ISC/CBR, granulometria e limites de consistência. PDF.', opcionalNoPredial: true, padrao: 'Relatório de Ensaios' },
+      { id: 'dimensionamento', nome: 'Memórias e planilhas de dimensionamento', dica: 'Memórias de cálculo e planilhas, inclusive planilhas de notas de serviço. Aceita vários arquivos.', padrao: 'Memória de Cálculo' },
+      { id: 'art', nome: 'ART ou RRT', dica: 'Anotação ou Registro de Responsabilidade Técnica de elaboração de cada projeto. PDF.', padrao: 'ART' },
+      { id: 'outros', nome: 'Outros documentos', dica: 'Documentos complementares. Se a aprovação original está em processo físico, anexe aqui a justificativa das alterações. Aceita vários arquivos.', opcional: true, padrao: 'Documento Complementar' },
+    ].filter((d) => !(predial && d.soLoteamento));
+
+    const vestir = (d) => {
+      const anexado = !!s.anexos[d.id];
+      const obrigatorio = !(predial && d.opcionalNoPredial) && !d.opcional;
+      return {
+        ...d, anexado, obrigatorio,
+        temValidade: !!d.temValidade, temTipo: !!d.temTipo,
+        tipo: s.licenca,
+        mudarTipo: (e) => this.setState({ licenca: e.target.value }),
+        rotulo: obrigatorio ? 'Obrigatório' : 'Opcional',
+        corRotulo: obrigatorio ? '#B4480B' : '#53666A',
+        arquivo: d.padrao + ' - ' + empreendimento + (d.ext ?? '.pdf'),
+        acao: anexado ? 'Remover' : 'Anexar arquivo',
+        borda: anexado ? '#1F7A3A' : '#CCD3D5',
+        fundo: anexado ? '#EEF7F0' : '#FFFFFF',
+        bordaBotao: anexado ? '#6B7C80' : accent,
+        fundoBotao: anexado ? '#FFFFFF' : accent,
+        corBotao: anexado ? '#2A454A' : '#FFFFFF',
+        alternar: () => this.setState({ anexos: { ...s.anexos, [d.id]: !anexado } }),
+      };
+    };
+    const listas = { administrativos: administrativos.map(vestir), prediais: prediais.map(vestir), tecnicos: tecnicos.map(vestir) };
+    const todos = [...listas.administrativos, ...listas.prediais, ...listas.tecnicos];
+
+    const vazios = ['nome', 'doc', 'endereco', 'representante', 'docRep', 'email', 'empreendimento']
+      .filter((k) => !f[k].trim()).length + (escolhidos.length ? 0 : 1) + (s.outroMarcado && !f.outro.trim() ? 1 : 0)
+      + (!predial && !s.modalidade ? 1 : 0) + (s.reaprov && !f.processo.trim() ? 1 : 0);
+    const faltantes = [];
+    if (vazios) faltantes.push({ nome: 'Requerimento: ' + (vazios === 1 ? '1 campo obrigatório por preencher' : vazios + ' campos obrigatórios por preencher') });
+    if (!s.declarou) faltantes.push({ nome: 'Requerimento: confirmar a declaração' });
+    todos.filter((d) => d.obrigatorio && !d.anexado).forEach((d) => faltantes.push({ nome: d.nome }));
+    const bloqueado = faltantes.length > 0;
+
+    const prefixo = predial ? '[TIPO PARA LIGAÇÃO PREDIAL]' : 'Análise de Empreendimentos';
+    const hoje = new Date().toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    return {
+      accent, f, projetos, ...listas, faltantes, bloqueado, semProjetos: disciplinas.length === 0,
+      formulario: !s.enviado, enviado: s.enviado,
+      servidao: s.servidao, declarou: s.declarou, outroMarcado: s.outroMarcado,
+      alternarOutro: () => this.setState({ outroMarcado: !s.outroMarcado }),
+      mudarOutro: mudar('outro'),
+      ehJuridica: juridica, ehFisica: !juridica,
+      ehLoteamento: !predial, ehPredial: predial,
+      ehInicial: !s.reaprov, ehReaprovacao: s.reaprov,
+      escolherInicial: () => this.setState({ reaprov: false }),
+      escolherReaprovacao: () => this.setState({ reaprov: true }),
+      mudarProcesso: mudar('processo'),
+      processoOriginal: ou(f.processo, 'nº do processo'),
+      ehAberto: s.modalidade === 'aberto', ehControlado: s.modalidade === 'controlado',
+      escolherAberto: () => this.setState({ modalidade: 'aberto' }),
+      escolherControlado: () => this.setState({ modalidade: 'controlado' }),
+      rotuloDoc: juridica ? 'CNPJ' : 'CPF',
+      nTecnicos: predial ? 4 : 3,
+      nEnviar: predial ? 5 : 4,
+      bordaLoteamento: predial ? '#CCD3D5' : accent,
+      bordaPredial: predial ? accent : '#CCD3D5',
+      bordaDeclaracao: s.declarou ? '#1F7A3A' : '#F36E22',
+      especificacao: prefixo + ' - ' + ou(f.empreendimento, 'NOME DO EMPREENDIMENTO'),
+      previaData: 'Goiânia, ' + hoje,
+      previaTexto: ou(f.nome, 'nome ou razão social') + ', '
+        + (juridica ? 'pessoa jurídica de direito privado, inscrita no CNPJ' : 'pessoa física, inscrita no CPF')
+        + ' sob o nº ' + ou(f.doc, juridica ? 'CNPJ' : 'CPF') + (juridica ? ', estabelecida na ' : ', residente na ') + ou(f.endereco, 'endereço')
+        + ', por meio de seu representante, ' + ou(f.representante, 'nome do representante')
+        + ', vem solicitar a análise e a ' + (s.reaprov ? 'reaprovação' : 'aprovação') + ' dos projetos de ' + listaProjetos
+        + ' do ' + empreendimento
+        + (s.reaprov ? ', aprovados no processo SEI nº ' + ou(f.processo, 'nº do processo') : '') + '.',
+      assinaRepresentante: ou(f.representante, 'nome do representante') + ' · CPF ' + ou(f.docRep, 'CPF'),
+      assinaRequerente: ou(f.nome, 'nome ou razão social') + ' · ' + (juridica ? 'CNPJ ' : 'CPF ') + ou(f.doc, juridica ? 'CNPJ' : 'CPF'),
+      resumo: bloqueado ? 'Pendências para o envio:' : 'Documentação completa. O pedido pode ser enviado.',
+      corResumo: bloqueado ? '#B4480B' : '#17602C',
+      fundoEnviar: bloqueado ? '#CCD3D5' : accent,
+      corEnviar: bloqueado ? '#2A454A' : '#FFFFFF',
+      cursorEnviar: bloqueado ? 'not-allowed' : 'pointer',
+      totalAnexados: todos.filter((d) => d.anexado).length,
+      mudarNome: mudar('nome'), mudarDoc: mudar('doc'), mudarEndereco: mudar('endereco'),
+      mudarRepresentante: mudar('representante'), mudarDocRep: mudar('docRep'),
+      mudarEmail: mudar('email'), mudarEmpreendimento: mudar('empreendimento'),
+      escolherJuridica: () => this.setState({ f: { ...f, natureza: 'juridica' } }),
+      escolherFisica: () => this.setState({ f: { ...f, natureza: 'fisica' } }),
+      escolherLoteamento: () => this.setState({ tipo: 'loteamento' }),
+      escolherPredial: () => this.setState({ tipo: 'predial' }),
+      alternarServidao: () => this.setState({ servidao: !s.servidao }),
+      alternarDeclaracao: () => this.setState({ declarou: !s.declarou }),
+      enviar: () => { if (!bloqueado) this.setState({ enviado: true }); },
+      recomecar: () => this.setState({ anexos: {}, enviado: false, declarou: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

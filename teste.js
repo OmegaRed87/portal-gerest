@@ -1,0 +1,24 @@
+addEventListener('load', () => {
+  const r = [];
+  const ok = (nome, cond) => r.push((cond ? 'OK ' : 'FALHOU ') + nome);
+  const corpo = () => document.getElementById('raiz').textContent;
+  const marca = (trecho) => [...document.querySelectorAll('label')].find((l) => l.textContent.includes(trecho)).querySelector('input').click();
+  const conta = (trecho) => corpo().split(trecho).length - 1;
+  ok('sem chaves sobrando', !corpo().includes('{{') && !document.getElementById('raiz').innerHTML.includes('{{'));
+  ok('aviso sem projeto', corpo().includes('Marque no requerimento os projetos'));
+  marca('(GAP)'); marca('Pavimentação Asfáltica');
+  ok('3 campos por projeto', conta('Projeto técnico em DWG: ') === 4 && conta('Projeto técnico em PDF: ') === 4 && conta('Memorial descritivo: ') === 4);
+  ok('aviso some', !corpo().includes('Marque no requerimento os projetos'));
+  const campo = document.getElementById('empreendimento');
+  campo.focus(); campo.value = 'Novos Ares Luar'; campo.dispatchEvent(new Event('input', { bubbles: true }));
+  ok('prévia acompanha o campo', conta('Novos Ares Luar') >= 1);
+  ok('foco mantido', document.activeElement === campo && campo.value === 'Novos Ares Luar');
+  [...document.querySelectorAll('button')].find((b) => b.textContent.includes('Anexar arquivo')).click();
+  ok('anexar marca o campo', corpo().includes('Será salvo como'));
+  marca('Ligação predial');
+  ok('numeração na ligação predial', corpo().includes('4. Projetos técnicos') && corpo().includes('5. Envio'));
+  ok('envio bloqueado com pendências', corpo().includes('Pendências para o envio'));
+  const botao = [...document.querySelectorAll('button')].find((b) => b.textContent.includes('Enviar'));
+  ok('botão de envio desativado', botao && botao.disabled);
+  document.title = 'TESTE ' + r.join(' | ');
+});
