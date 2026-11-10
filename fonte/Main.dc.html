@@ -13,11 +13,14 @@
 body{margin:0}
 a{color:#1B5E20}a:hover{color:#124116}
 input,button,select{font-family:inherit}
+.anexar:focus-within{outline:3px solid #F36E22;outline-offset:2px}
 </style>
 </helmet>
 <div style="background: #F2F4F4; color: #2A454A; font-family: Poppins, system-ui, sans-serif; font-size: 16px; line-height: 1.55">
 
+<sc-if value="{{ rascunho }}" hint-placeholder-val="{{ true }}">
 <div style="background: #FFF1C9; color: #4D3A00; font-size: 14px; font-weight: 600; padding: 10px 16px; text-align: center">Rascunho para conferência. Protótipo sem envio real.</div>
+</sc-if>
 
 <header style="background: #FFFFFF">
 <div style="max-width: 920px; margin: 0 auto; padding: 16px; display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center">
@@ -146,7 +149,7 @@ input,button,select{font-family:inherit}
 </div>
 <div style="display: flex; flex-direction: column; gap: 6px">
 <label for="telefone" style="font-weight: 600; font-size: 15px">Telefone (opcional)</label>
-<input id="telefone" type="tel" autocomplete="tel" style="min-height: 44px; padding: 8px 12px; font-size: 16px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A; box-sizing: border-box; width: 100%">
+<input id="telefone" type="tel" autocomplete="tel" value="{{ f.telefone }}" onChange="{{ mudarTelefone }}" style="min-height: 44px; padding: 8px 12px; font-size: 16px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A; box-sizing: border-box; width: 100%">
 </div>
 </div>
 </div>
@@ -281,13 +284,16 @@ input,button,select{font-family:inherit}
 </div>
 </sc-if>
 <sc-if value="{{ doc.temValidade }}" hint-placeholder-val="{{ false }}">
-<label style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; font-weight: 600; margin-top: 4px">Validade <input type="date" style="min-height: 44px; padding: 6px 10px; font-size: 15px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A"></label>
+<label style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; font-weight: 600; margin-top: 4px">Validade <input type="date" value="{{ doc.validade }}" onChange="{{ doc.mudarValidade }}" style="min-height: 44px; padding: 6px 10px; font-size: 15px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A"></label>
 </sc-if>
-<sc-if value="{{ doc.anexado }}" hint-placeholder-val="{{ false }}">
-<span style="display: flex; gap: 6px; align-items: flex-start; font-size: 14px; font-weight: 600; color: #17602C"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto; margin-top: 3px"><path d="M3 8.5l3.2 3.2L13 4.8"></path></svg><span>Anexado. Será salvo como: {{ doc.arquivo }}</span></span>
+<sc-for list="{{ doc.arquivos }}" as="arq" hint-placeholder-count="1">
+<span style="display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; font-size: 14px"><span style="font-weight: 600; color: #17602C; overflow-wrap: anywhere">{{ arq.nome }}</span><span style="color: #53666A; overflow-wrap: anywhere">Será salvo como: {{ arq.salvo }}</span><button type="button" onClick="{{ arq.remover }}" aria-label="Remover {{ arq.nome }}" style="min-height: 36px; padding: 4px 10px; font-size: 14px; font-weight: 600; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A; cursor: pointer">Remover</button></span>
+</sc-for>
+<sc-if value="{{ doc.erro }}" hint-placeholder-val="{{ false }}">
+<span role="alert" style="font-size: 14px; font-weight: 600; color: #B4480B">{{ doc.erro }}</span>
 </sc-if>
 </div>
-<button type="button" onClick="{{ doc.alternar }}" style="flex: 0 0 auto; min-height: 44px; padding: 8px 18px; font-size: 15px; font-weight: 600; border-radius: 10px; cursor: pointer; border: 1px solid {{ doc.bordaBotao }}; background: {{ doc.fundoBotao }}; color: {{ doc.corBotao }}">{{ doc.acao }}</button>
+<label class="anexar" style="flex: 0 0 auto; min-height: 44px; padding: 8px 18px; font-size: 15px; font-weight: 600; border-radius: 10px; cursor: pointer; border: 1px solid {{ doc.bordaBotao }}; background: {{ doc.fundoBotao }}; color: {{ doc.corBotao }}; display: inline-flex; align-items: center; box-sizing: border-box; position: relative">{{ doc.acao }}<input type="file" accept="{{ doc.aceita }}" multiple="{{ doc.varios }}" onChange="{{ doc.escolher }}" style="position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden"></label>
 </div>
 </sc-for>
 </section>
@@ -305,13 +311,16 @@ input,button,select{font-family:inherit}
 </div>
 <span style="font-size: 14px; color: #53666A">{{ doc.dica }}</span>
 <sc-if value="{{ doc.temValidade }}" hint-placeholder-val="{{ false }}">
-<label style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; font-weight: 600; margin-top: 4px">Validade <input type="date" style="min-height: 44px; padding: 6px 10px; font-size: 15px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A"></label>
+<label style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; font-weight: 600; margin-top: 4px">Validade <input type="date" value="{{ doc.validade }}" onChange="{{ doc.mudarValidade }}" style="min-height: 44px; padding: 6px 10px; font-size: 15px; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A"></label>
 </sc-if>
-<sc-if value="{{ doc.anexado }}" hint-placeholder-val="{{ false }}">
-<span style="display: flex; gap: 6px; align-items: flex-start; font-size: 14px; font-weight: 600; color: #17602C"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto; margin-top: 3px"><path d="M3 8.5l3.2 3.2L13 4.8"></path></svg><span>Anexado. Será salvo como: {{ doc.arquivo }}</span></span>
+<sc-for list="{{ doc.arquivos }}" as="arq" hint-placeholder-count="1">
+<span style="display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; font-size: 14px"><span style="font-weight: 600; color: #17602C; overflow-wrap: anywhere">{{ arq.nome }}</span><span style="color: #53666A; overflow-wrap: anywhere">Será salvo como: {{ arq.salvo }}</span><button type="button" onClick="{{ arq.remover }}" aria-label="Remover {{ arq.nome }}" style="min-height: 36px; padding: 4px 10px; font-size: 14px; font-weight: 600; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A; cursor: pointer">Remover</button></span>
+</sc-for>
+<sc-if value="{{ doc.erro }}" hint-placeholder-val="{{ false }}">
+<span role="alert" style="font-size: 14px; font-weight: 600; color: #B4480B">{{ doc.erro }}</span>
 </sc-if>
 </div>
-<button type="button" onClick="{{ doc.alternar }}" style="flex: 0 0 auto; min-height: 44px; padding: 8px 18px; font-size: 15px; font-weight: 600; border-radius: 10px; cursor: pointer; border: 1px solid {{ doc.bordaBotao }}; background: {{ doc.fundoBotao }}; color: {{ doc.corBotao }}">{{ doc.acao }}</button>
+<label class="anexar" style="flex: 0 0 auto; min-height: 44px; padding: 8px 18px; font-size: 15px; font-weight: 600; border-radius: 10px; cursor: pointer; border: 1px solid {{ doc.bordaBotao }}; background: {{ doc.fundoBotao }}; color: {{ doc.corBotao }}; display: inline-flex; align-items: center; box-sizing: border-box; position: relative">{{ doc.acao }}<input type="file" accept="{{ doc.aceita }}" multiple="{{ doc.varios }}" onChange="{{ doc.escolher }}" style="position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden"></label>
 </div>
 </sc-for>
 </section>
@@ -331,11 +340,14 @@ input,button,select{font-family:inherit}
 <span style="font-size: 13px; font-weight: 600; color: {{ doc.corRotulo }}">{{ doc.rotulo }}</span>
 </div>
 <span style="font-size: 14px; color: #53666A">{{ doc.dica }}</span>
-<sc-if value="{{ doc.anexado }}" hint-placeholder-val="{{ false }}">
-<span style="display: flex; gap: 6px; align-items: flex-start; font-size: 14px; font-weight: 600; color: #17602C"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto; margin-top: 3px"><path d="M3 8.5l3.2 3.2L13 4.8"></path></svg><span>Anexado. Será salvo como: {{ doc.arquivo }}</span></span>
+<sc-for list="{{ doc.arquivos }}" as="arq" hint-placeholder-count="1">
+<span style="display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; font-size: 14px"><span style="font-weight: 600; color: #17602C; overflow-wrap: anywhere">{{ arq.nome }}</span><span style="color: #53666A; overflow-wrap: anywhere">Será salvo como: {{ arq.salvo }}</span><button type="button" onClick="{{ arq.remover }}" aria-label="Remover {{ arq.nome }}" style="min-height: 36px; padding: 4px 10px; font-size: 14px; font-weight: 600; border: 1px solid #6B7C80; border-radius: 8px; background: #FFFFFF; color: #2A454A; cursor: pointer">Remover</button></span>
+</sc-for>
+<sc-if value="{{ doc.erro }}" hint-placeholder-val="{{ false }}">
+<span role="alert" style="font-size: 14px; font-weight: 600; color: #B4480B">{{ doc.erro }}</span>
 </sc-if>
 </div>
-<button type="button" onClick="{{ doc.alternar }}" style="flex: 0 0 auto; min-height: 44px; padding: 8px 18px; font-size: 15px; font-weight: 600; border-radius: 10px; cursor: pointer; border: 1px solid {{ doc.bordaBotao }}; background: {{ doc.fundoBotao }}; color: {{ doc.corBotao }}">{{ doc.acao }}</button>
+<label class="anexar" style="flex: 0 0 auto; min-height: 44px; padding: 8px 18px; font-size: 15px; font-weight: 600; border-radius: 10px; cursor: pointer; border: 1px solid {{ doc.bordaBotao }}; background: {{ doc.fundoBotao }}; color: {{ doc.corBotao }}; display: inline-flex; align-items: center; box-sizing: border-box; position: relative">{{ doc.acao }}<input type="file" accept="{{ doc.aceita }}" multiple="{{ doc.varios }}" onChange="{{ doc.escolher }}" style="position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden"></label>
 </div>
 </sc-for>
 </section>
@@ -355,8 +367,14 @@ input,button,select{font-family:inherit}
 <p style="margin: 6px 0 0">Documentos com dados pessoais entram no SEI com acesso restrito, e o processo tramita normalmente. Os demais são públicos e podem ser consultados por qualquer pessoa.</p>
 </div>
 <p style="margin: 0; font-size: 14px; color: #53666A">Ao enviar, você confirma a declaração de responsabilidade do requerimento.</p>
+<sc-if value="{{ envioTexto }}" hint-placeholder-val="{{ false }}">
+<p role="status" style="margin: 0; font-weight: 600; color: #17602C">{{ envioTexto }} Não feche esta página.</p>
+</sc-if>
+<sc-if value="{{ envioErro }}" hint-placeholder-val="{{ false }}">
+<p role="alert" style="margin: 0; padding: 12px 16px; border-radius: 8px; border: 1px solid #F36E22; background: #FFF1EC; font-weight: 600; color: #8A3206">O pedido não foi enviado. {{ envioErro }}</p>
+</sc-if>
 <div>
-<button type="button" disabled="{{ bloqueado }}" onClick="{{ enviar }}" style="min-height: 48px; padding: 10px 28px; font-size: 16px; font-weight: 700; border: 0; border-radius: 10px; cursor: {{ cursorEnviar }}; background: {{ fundoEnviar }}; color: {{ corEnviar }}">Enviar pedido</button>
+<button type="button" disabled="{{ naoPodeEnviar }}" onClick="{{ enviar }}" style="min-height: 48px; padding: 10px 28px; font-size: 16px; font-weight: 700; border: 0; border-radius: 10px; cursor: {{ cursorEnviar }}; background: {{ fundoEnviar }}; color: {{ corEnviar }}">{{ rotuloEnviar }}</button>
 </div>
 </section>
 
@@ -374,7 +392,7 @@ input,button,select{font-family:inherit}
 <sc-if value="{{ ehReaprovacao }}" hint-placeholder-val="{{ false }}">
 <p style="margin: 0">O processo SEI nº {{ processoOriginal }} será conferido. Confirmado o número, os documentos são juntados a ele e a confirmação é enviada ao e-mail informado. Se houver divergência, um analista da GEREST faz a conferência e entra em contato.</p>
 </sc-if>
-<p style="margin: 0; font-size: 15px; color: #53666A">Protocolo deste envio: [Nº DO ENVIO] · [DATA E HORA]</p>
+<p style="margin: 0; font-size: 15px; color: #53666A">Protocolo deste envio: {{ protocolo }} · {{ recebidoEm }}</p>
 <div>
 <button type="button" onClick="{{ recomecar }}" style="min-height: 44px; padding: 8px 18px; font-size: 15px; font-weight: 600; border-radius: 10px; cursor: pointer; border: 1px solid #1B5E20; background: #FFFFFF; color: #1B5E20">Fazer outro envio</button>
 </div>
@@ -400,9 +418,9 @@ input,button,select{font-family:inherit}
 <script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#1B5E20"},"$preview":{"width":1280,"height":6600}}'>
 class Component extends DCLogic {
   state = {
-    tipo: 'loteamento', modalidade: '', reaprov: false, servidao: false, anexos: {}, enviado: false, declarou: false,
+    tipo: 'loteamento', modalidade: '', reaprov: false, servidao: false, arquivos: {}, erros: {}, validades: {}, envio: null, protocolo: '', recebidoEm: '', enviado: false, declarou: false,
     projetos: {}, outroMarcado: false, licenca: 'previa',
-    f: { natureza: 'juridica', nome: '', doc: '', endereco: '', representante: '', docRep: '', email: '', empreendimento: '', outro: '', processo: '' },
+    f: { natureza: 'juridica', nome: '', doc: '', endereco: '', representante: '', docRep: '', email: '', telefone: '', empreendimento: '', outro: '', processo: '' },
   };
 
   renderVals() {
@@ -448,11 +466,11 @@ class Component extends DCLogic {
         { id: 'area', nome: 'Comprovante de propriedade da área de servidão', dica: 'PDF.', padrao: 'Comprovante da Área de Servidão' });
     }
     if (s.reaprov) {
-      administrativos.unshift({ id: 'justificativa', nome: 'Justificativa da reaprovação', dica: 'Alterações em relação ao projeto aprovado e o motivo de cada uma. PDF ou DOCX.', padrao: 'Justificativa da Reaprovação' });
+      administrativos.unshift({ id: 'justificativa', nome: 'Justificativa da reaprovação', dica: 'Alterações em relação ao projeto aprovado e o motivo de cada uma. PDF ou DOCX.', padrao: 'Justificativa da Reaprovação', ext: ['pdf', 'docx'] });
     }
     const prediais = predial ? [
       { id: 'alvara', nome: 'Alvará de construção ou de modificação', dica: 'PDF.', temValidade: true, padrao: 'Alvará de Construção' },
-      { id: 'urbanistico', nome: 'Projeto urbanístico aprovado', dica: 'PDF e DWG.', padrao: 'Projeto Urbanístico Aprovado' },
+      { id: 'urbanistico', nome: 'Projeto urbanístico aprovado', dica: 'PDF e DWG. Aceita vários arquivos.', padrao: 'Projeto Urbanístico Aprovado', ext: ['pdf', 'dwg'], varios: true },
     ] : [];
     // cada projeto marcado no requerimento pede o seu memorial e o seu projeto, em DWG e em PDF
     const disciplinas = projetos.filter((p) => p.marcado).map((p) => ({ id: p.id, nome: p.nome, curto: p.curto }));
@@ -460,35 +478,56 @@ class Component extends DCLogic {
     const tecnicos = [
       ...disciplinas.flatMap((p) => [
         { id: 'memorial-' + p.id, nome: 'Memorial descritivo: ' + p.nome, dica: 'PDF.', padrao: 'Memorial Descritivo de ' + p.curto },
-        { id: 'dwg-' + p.id, nome: 'Projeto técnico em DWG: ' + p.nome, dica: 'Todas as pranchas, no arquivo editável. Aceita vários arquivos.', padrao: 'Projeto de ' + p.curto, ext: '.dwg' },
+        { id: 'dwg-' + p.id, nome: 'Projeto técnico em DWG: ' + p.nome, dica: 'Todas as pranchas, no arquivo editável. Aceita vários arquivos.', padrao: 'Projeto de ' + p.curto, ext: ['dwg'], varios: true },
         { id: 'pdf-' + p.id, nome: 'Projeto técnico em PDF: ' + p.nome, dica: 'Um único arquivo PDF com todas as pranchas.', padrao: 'Projeto de ' + p.curto },
       ]),
       { id: 'planta', nome: 'Planta urbanística aprovada', dica: 'Aprovada pelo órgão municipal de planejamento. PDF.', soLoteamento: true, padrao: 'Planta Urbanística Aprovada' },
-      { id: 'topografia', nome: 'Levantamento topográfico planialtimétrico', dica: 'Com curvas de nível a cada 1,0 m. DWG.', opcionalNoPredial: true, padrao: 'Levantamento Topográfico', ext: '.dwg' },
+      { id: 'topografia', nome: 'Levantamento topográfico planialtimétrico', dica: 'Com curvas de nível a cada 1,0 m. DWG.', opcionalNoPredial: true, padrao: 'Levantamento Topográfico', ext: ['dwg'] },
       { id: 'ensaios', nome: 'Relatório de sondagens e ensaios', dica: 'Ensaios geotécnicos: ISC/CBR, granulometria e limites de consistência. PDF.', opcionalNoPredial: true, padrao: 'Relatório de Ensaios' },
-      { id: 'dimensionamento', nome: 'Memórias e planilhas de dimensionamento', dica: 'Memórias de cálculo e planilhas, inclusive planilhas de notas de serviço. Aceita vários arquivos.', padrao: 'Memória de Cálculo' },
-      { id: 'art', nome: 'ART ou RRT', dica: 'Anotação ou Registro de Responsabilidade Técnica de elaboração de cada projeto. PDF.', padrao: 'ART' },
-      { id: 'outros', nome: 'Outros documentos', dica: 'Documentos complementares. Se a aprovação original está em processo físico, anexe aqui a justificativa das alterações. Aceita vários arquivos.', opcional: true, padrao: 'Documento Complementar' },
+      { id: 'dimensionamento', nome: 'Memórias e planilhas de dimensionamento', dica: 'Memórias de cálculo e planilhas, inclusive planilhas de notas de serviço. PDF ou Excel. Aceita vários arquivos.', padrao: 'Memória de Cálculo', ext: ['pdf', 'xlsx', 'xls'], varios: true },
+      { id: 'art', nome: 'ART ou RRT', dica: 'Anotação ou Registro de Responsabilidade Técnica de elaboração de cada projeto. PDF. Aceita vários arquivos.', padrao: 'ART', varios: true },
+      { id: 'outros', nome: 'Outros documentos', dica: 'Documentos complementares. Se a aprovação original está em processo físico, anexe aqui a justificativa das alterações. Aceita vários arquivos.', opcional: true, padrao: 'Documento Complementar', ext: ['pdf', 'dwg', 'docx', 'xlsx', 'xls'], varios: true },
     ].filter((d) => !(predial && d.soLoteamento));
 
     const vestir = (d) => {
-      const anexado = !!s.anexos[d.id];
+      const lista = s.arquivos[d.id] ?? [];
+      const anexado = lista.length > 0;
+      const ext = d.ext ?? ['pdf'];
+      const extensao = (nome) => nome.split('.').pop().toLowerCase();
       const obrigatorio = !(predial && d.opcionalNoPredial) && !d.opcional;
+      const guardar = (novaLista, erro) => this.setState({
+        arquivos: { ...s.arquivos, [d.id]: novaLista }, erros: { ...s.erros, [d.id]: erro }, envio: null });
       return {
-        ...d, anexado, obrigatorio,
+        ...d, anexado, obrigatorio, lista,
         temValidade: !!d.temValidade, temTipo: !!d.temTipo,
         tipo: s.licenca,
         mudarTipo: (e) => this.setState({ licenca: e.target.value }),
+        validade: s.validades[d.id] ?? '',
+        mudarValidade: (e) => this.setState({ validades: { ...s.validades, [d.id]: e.target.value } }),
         rotulo: obrigatorio ? 'Obrigatório' : 'Opcional',
         corRotulo: obrigatorio ? '#B4480B' : '#53666A',
-        arquivo: d.padrao + ' - ' + empreendimento + (d.ext ?? '.pdf'),
-        acao: anexado ? 'Remover' : 'Anexar arquivo',
+        varios: !!d.varios,
+        aceita: ext.map((x) => '.' + x).join(','),
+        erro: s.erros[d.id] ?? '',
+        arquivos: lista.map((arquivo, i) => ({
+          nome: arquivo.name,
+          salvo: d.padrao + ' - ' + empreendimento + (i ? ' ' + (i + 1) : '') + '.' + extensao(arquivo.name),
+          remover: () => guardar(lista.filter((_, j) => j !== i), ''),
+        })),
+        escolher: (e) => {
+          const escolhidos = [...e.target.files];
+          e.target.value = '';                       // permite escolher de novo o mesmo arquivo
+          const bons = escolhidos.filter((a) => ext.includes(extensao(a.name)) && a.size > 0 && a.size <= 300 * 1024 * 1024);
+          const erro = bons.length === escolhidos.length ? ''
+            : 'Arquivo recusado: o formato aceito é ' + ext.map((x) => x.toUpperCase()).join(' ou ') + ', com até 300 MB.';
+          guardar(d.varios ? [...lista, ...bons].slice(0, 20) : bons.length ? bons.slice(0, 1) : lista, erro);
+        },
+        acao: !anexado ? 'Anexar arquivo' : d.varios ? 'Adicionar arquivo' : 'Trocar arquivo',
         borda: anexado ? '#1F7A3A' : '#CCD3D5',
         fundo: anexado ? '#EEF7F0' : '#FFFFFF',
         bordaBotao: anexado ? '#6B7C80' : accent,
         fundoBotao: anexado ? '#FFFFFF' : accent,
         corBotao: anexado ? '#2A454A' : '#FFFFFF',
-        alternar: () => this.setState({ anexos: { ...s.anexos, [d.id]: !anexado } }),
       };
     };
     const listas = { administrativos: administrativos.map(vestir), prediais: prediais.map(vestir), tecnicos: tecnicos.map(vestir) };
@@ -502,12 +541,20 @@ class Component extends DCLogic {
     if (!s.declarou) faltantes.push({ nome: 'Requerimento: confirmar a declaração' });
     todos.filter((d) => d.obrigatorio && !d.anexado).forEach((d) => faltantes.push({ nome: d.nome }));
     const bloqueado = faltantes.length > 0;
+    const enviando = !!s.envio?.andamento;
+    const pedido = {
+      natureza: f.natureza, nome: f.nome, doc: f.doc, endereco: f.endereco, representante: f.representante, docRep: f.docRep,
+      email: f.email, telefone: f.telefone, empreendimento: f.empreendimento, processo: f.processo,
+      outro_projeto: s.outroMarcado ? f.outro : '', tipo: s.tipo, modalidade: s.modalidade, reaprovacao: s.reaprov,
+      servidao: s.servidao, licenca: s.licenca, projetos: projetos.filter((p) => p.marcado).map((p) => p.id),
+      validades: s.validades, declarou: s.declarou,
+    };
 
     const prefixo = predial ? '[TIPO PARA LIGAÇÃO PREDIAL]' : 'Análise de Empreendimentos';
     const hoje = new Date().toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
 
     return {
-      accent, f, projetos, ...listas, faltantes, bloqueado, semProjetos: disciplinas.length === 0,
+      accent, f, projetos, ...listas, faltantes, bloqueado, rascunho: window.PORTAL_API == null, semProjetos: disciplinas.length === 0,
       formulario: !s.enviado, enviado: s.enviado,
       servidao: s.servidao, declarou: s.declarou, outroMarcado: s.outroMarcado,
       alternarOutro: () => this.setState({ outroMarcado: !s.outroMarcado }),
@@ -541,10 +588,16 @@ class Component extends DCLogic {
       assinaRequerente: ou(f.nome, 'nome ou razão social') + ' · ' + (juridica ? 'CNPJ ' : 'CPF ') + ou(f.doc, juridica ? 'CNPJ' : 'CPF'),
       resumo: bloqueado ? 'Pendências para o envio:' : 'Documentação completa. O pedido pode ser enviado.',
       corResumo: bloqueado ? '#B4480B' : '#17602C',
-      fundoEnviar: bloqueado ? '#CCD3D5' : accent,
-      corEnviar: bloqueado ? '#2A454A' : '#FFFFFF',
-      cursorEnviar: bloqueado ? 'not-allowed' : 'pointer',
-      totalAnexados: todos.filter((d) => d.anexado).length,
+      naoPodeEnviar: bloqueado || enviando,
+      rotuloEnviar: enviando ? 'Enviando…' : 'Enviar pedido',
+      envioTexto: enviando ? s.envio.texto : '',
+      envioErro: s.envio?.erro ?? '',
+      protocolo: s.protocolo, recebidoEm: s.recebidoEm,
+      fundoEnviar: bloqueado || enviando ? '#CCD3D5' : accent,
+      corEnviar: bloqueado || enviando ? '#2A454A' : '#FFFFFF',
+      cursorEnviar: bloqueado || enviando ? 'not-allowed' : 'pointer',
+      totalAnexados: todos.reduce((n, d) => n + d.lista.length, 0),
+      mudarTelefone: mudar('telefone'),
       mudarNome: mudar('nome'), mudarDoc: mudar('doc'), mudarEndereco: mudar('endereco'),
       mudarRepresentante: mudar('representante'), mudarDocRep: mudar('docRep'),
       mudarEmail: mudar('email'), mudarEmpreendimento: mudar('empreendimento'),
@@ -554,9 +607,47 @@ class Component extends DCLogic {
       escolherPredial: () => this.setState({ tipo: 'predial' }),
       alternarServidao: () => this.setState({ servidao: !s.servidao }),
       alternarDeclaracao: () => this.setState({ declarou: !s.declarou }),
-      enviar: () => { if (!bloqueado) this.setState({ enviado: true }); },
-      recomecar: () => this.setState({ anexos: {}, enviado: false, declarou: false }),
+      enviar: () => { if (!bloqueado && !enviando) this.enviarPedido(pedido, todos); },
+      recomecar: () => this.setState({ arquivos: {}, erros: {}, envio: null, enviado: false, declarou: false }),
     };
+  }
+
+  // Manda o requerimento e cada arquivo, em partes, ao serviço de recebimento. Sem endereço do serviço
+  // (window.PORTAL_API), a página é só demonstração e nada sai do navegador.
+  async enviarPedido(pedido, documentos) {
+    const api = window.PORTAL_API;
+    const agora = () => new Date().toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+    if (api == null) return this.setState({ enviado: true, protocolo: '[demonstração: nada foi enviado]', recebidoEm: agora() });
+    const passo = (texto) => this.setState({ envio: { andamento: true, texto } });
+    const chamar = async (metodo, caminho, corpo, token) => {
+      const r = await fetch(api + caminho, { method: metodo, body: corpo, headers: token ? { 'X-Pedido-Token': token } : {} });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error([j.erro, ...(j.pendencias ?? [])].filter(Boolean).join(' ') || 'O serviço recusou o envio.');
+      return j;
+    };
+    try {
+      passo('Enviando o requerimento…');
+      const p = await chamar('POST', '/pedidos', JSON.stringify(pedido));
+      const arquivos = documentos.flatMap((d) => d.lista.map((arquivo, n) => ({ d, arquivo, n })));
+      const total = arquivos.reduce((soma, a) => soma + a.arquivo.size, 0);
+      const PARTE = 16 * 1024 * 1024;
+      let feito = 0;
+      for (const { d, arquivo, n } of arquivos) {
+        for (let pos = 0; pos < arquivo.size; pos += PARTE) {
+          passo('Enviando os arquivos: ' + Math.floor(100 * feito / total) + '% (' + d.nome + ').');
+          const parte = arquivo.slice(pos, pos + PARTE);
+          await chamar('PUT', '/pedidos/' + p.id + '/arquivos/' + d.id + '/' + n + '?pos=' + pos + '&total=' + arquivo.size
+            + '&nome=' + encodeURIComponent(arquivo.name), parte, p.token);
+          feito += parte.size;
+        }
+      }
+      passo('Conferindo o pedido…');
+      const fim = await chamar('POST', '/pedidos/' + p.id + '/enviar', '', p.token);
+      this.setState({ enviado: true, envio: null, protocolo: fim.protocolo, recebidoEm: agora() });
+    } catch (e) {
+      this.setState({ envio: { erro: e instanceof TypeError
+        ? 'Não foi possível falar com o serviço de recebimento. Confira a conexão e tente de novo.' : e.message } });
+    }
   }
 }
 </script>

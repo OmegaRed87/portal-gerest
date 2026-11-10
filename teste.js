@@ -13,8 +13,16 @@ addEventListener('load', () => {
   campo.focus(); campo.value = 'Novos Ares Luar'; campo.dispatchEvent(new Event('input', { bubbles: true }));
   ok('prévia acompanha o campo', conta('Novos Ares Luar') >= 1);
   ok('foco mantido', document.activeElement === campo && campo.value === 'Novos Ares Luar');
-  [...document.querySelectorAll('button')].find((b) => b.textContent.includes('Anexar arquivo')).click();
-  ok('anexar marca o campo', corpo().includes('Será salvo como'));
+  const anexa = (i, nome) => {
+    const campo = document.querySelectorAll('input[type=file]')[i], dt = new DataTransfer();
+    dt.items.add(new File(['%PDF-1.7'], nome));
+    campo.files = dt.files; campo.dispatchEvent(new Event('input', { bubbles: true }));
+  };
+  anexa(0, 'licenca.pdf');
+  ok('anexar mostra o nome padronizado', corpo().includes('Será salvo como: Licença Ambiental Prévia - Novos Ares Luar.pdf'));
+  anexa(1, 'foto.jpg');
+  ok('formato errado é recusado', corpo().includes('Arquivo recusado'));
+  ok('sem serviço, a faixa de rascunho aparece', corpo().includes('Rascunho para conferência'));
   marca('Ligação predial');
   ok('numeração na ligação predial', corpo().includes('4. Projetos técnicos') && corpo().includes('5. Envio'));
   ok('envio bloqueado com pendências', corpo().includes('Pendências para o envio'));

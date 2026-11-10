@@ -1,6 +1,6 @@
 // Motor mínimo da página: desenha o molde (<template id="molde">) com os valores de Component.renderVals()
 // e redesenha a cada setState. Entende só o que o rascunho usa: {{ caminho.com.pontos }}, <sc-if value>,
-// <sc-for list as>, onClick, onChange, value, checked e disabled.
+// <sc-for list as>, onClick, onChange, value, checked, disabled e multiple.
 class DCLogic {
   constructor(props) { this.props = props; }
   setState(parte) { this.state = { ...this.state, ...parte }; desenhar(); }
@@ -33,7 +33,7 @@ function montar(no, escopo, destino) {
       el.removeAttribute(name);
       el[name === 'onclick' ? 'onclick' : 'oninput'] = valor(escopo, c);   // onChange vale a cada tecla
     } else if (c && name === 'checked') { el.removeAttribute(name); el._marcado = el.checked = !!valor(escopo, c); }
-    else if (c && name === 'disabled') { el.removeAttribute(name); if (valor(escopo, c)) el.setAttribute(name, ''); }
+    else if (c && (name === 'disabled' || name === 'multiple')) { el.removeAttribute(name); if (valor(escopo, c)) el.setAttribute(name, ''); }
     else if (c && name === 'value') { el.removeAttribute(name); el._valor = String(valor(escopo, c) ?? ''); }
     else if (value.includes('{{')) el.setAttribute(name, texto(escopo, value));
   }
